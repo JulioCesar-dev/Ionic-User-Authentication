@@ -23,6 +23,6 @@ export class PasswordRecoveryComponent implements OnInit {
     });
     toast.present();
 
-    this.router.navigate(['']);
+    this.router.navigate(['login']);
   }
 }

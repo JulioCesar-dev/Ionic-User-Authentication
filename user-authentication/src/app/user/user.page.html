@@ -32,6 +32,6 @@
       <ion-label position="floating">Confirmar a senha</ion-label>
       <ion-input [(ngModel)]="repeatPassword" name="repeatPassword" required="true" type="password"></ion-input>
     </ion-item>
-    <ion-button (click)="save()" [disabled]="!formLogin.form.valid" expand="full">Salvar</ion-button>
+    <ion-button (click)="save()" shape="round" [disabled]="!formLogin.form.valid" expand="full">Salvar</ion-button>
   </form>
 </ion-content>

@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu side="start" contentId="main-content" type="overlay" *ngIf="!isLogin()">
+    <ion-menu side="start" contentId="main-content" type="overlay" *ngIf="!isAuthenticated()">
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>Julio</ion-list-header>

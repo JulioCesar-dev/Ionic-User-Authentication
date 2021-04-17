@@ -14,7 +14,7 @@ export class AppComponent {
 
   constructor(private location: Location) {}
 
-  isLogin() {
-    return this.location.path() == '/login';
+  isAuthenticated() {
+    return this.location.path() == '/login' || this.location.path() == '/passwordRecovery' || this.location.path() == '/user';
   }
 }

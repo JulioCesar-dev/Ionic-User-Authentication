@@ -1,5 +1,3 @@
-import { Block } from "src/app/block/model/block.model";
-
 export class Enviroment {
     id: number;
     name: string;
