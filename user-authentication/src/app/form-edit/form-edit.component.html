@@ -1,0 +1,23 @@
+<form #formEdit="ngForm">
+  <ion-item *ngFor="let field of fields">
+    <ion-label position="floating">{{field.label}}</ion-label>
+    <ion-input *ngIf="field.itemType == INPUT_TYPE" 
+      [(ngModel)]="object[field.name]" 
+      [name]="field.name" 
+      [required]="field.required" 
+      [type]="field.type"
+      [placeholder]="field.placeholder"
+      [multiple]="field.multiple">
+    </ion-input>
+
+    <ion-select *ngIf="field.itemType == SELECT_TYPE" 
+      [name]="field.name"
+      [placeholder]="field.placeholder"
+      [(ngModel)]="object[field.name]"
+      [required]="field.required"
+      [multiple]="field.multiple">
+      <ion-select-option *ngFor="let option of field.options" [value]="option.value">{{option.name}}</ion-select-option>      
+    </ion-select>
+  </ion-item>
+  <ion-button (click)="save()" shape="round" [disabled]="!formEdit.form.valid" expand="block">Salvar</ion-button>
+</form>

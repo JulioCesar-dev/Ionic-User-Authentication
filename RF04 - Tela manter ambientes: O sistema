@@ -1,0 +1,24 @@
+RF04 - Tela manter ambientes: O sistema deve permitir que o usuário cadastre informações sobre os ambientes acadêmicos: unidade, bloco e ambiente - tipo de ambiente (comportamental, laboratório, auditório, anfteatro, administrativo), nome, capacidade, qtComputador, ipCamera.
+
+- Unidade
+- Bloco 
+- Ambiente :
+     - tipo de ambiente (comportamental, laboratório, auditório, anfteatro, administrativo)
+     - nome
+     - capacidade
+     - qtComputador
+     - ipCamera
+
+
+RF05 - Tela manter Embarcado: O sistema deve permitir que o usuário cadastre informações sobre o hardware embarcado: 
+Embarcado:
+    - descrição
+    - firmware
+    - status
+    - modo de comunicação (estação cliente ou roteador)
+    - ip do embarcado
+    - mac do embarcado
+    - ip do gateway
+
+MQTT
+- além do ip, porta e lista de tópicos do servidor 

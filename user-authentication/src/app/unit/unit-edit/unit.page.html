@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Unidade</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #unitForm="ngForm">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input [(ngModel)]="unit.name" name="name" required="true" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Localização</ion-label>
+      <ion-input [(ngModel)]="unit.location" name="location" required="true" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input [(ngModel)]="unit.phone" name="phone" required="true" type="tel-local"></ion-input>
+    </ion-item>
+    <ion-button (click)="save()" [disabled]="!unitForm.form.valid" expand="full">Salvar</ion-button>
+  </form>
+
+</ion-content>

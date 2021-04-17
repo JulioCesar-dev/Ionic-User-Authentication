@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #formLogin="ngForm">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="email" name="email" required="true" type="email" placeholder="user@dominio"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input [(ngModel)]="password" name="password" required="true" type="password"></ion-input>
+    </ion-item>
+  
+    <ion-button (click)="login()" shape="round" [disabled]="!formLogin.form.valid" expand="full">Entrar</ion-button>
+    <ion-button (click)="newUser()" shape="round" color="danger" expand="full">Registrar-se</ion-button>
+    <ion-button (click)="passwordRecovery()" fill="outline" expand="full">Esqueceu sua senha?</ion-button>
+  </form>
+</ion-content>

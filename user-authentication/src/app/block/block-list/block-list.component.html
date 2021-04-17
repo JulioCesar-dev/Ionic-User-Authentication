@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-list-view 
+    (selectItemEvent)="edit($event)" 
+    (newItemEvent)="new()" 
+    [items]="blocks"
+    [getLabelItem]="labelResolver">
+  </app-list-view>
+</ion-content>
