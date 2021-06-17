@@ -26,7 +26,7 @@ const routes: Routes = [
     loadChildren: () => import('./user/user.module').then( m => m.UserPageModule)
   },
   {
-    path: 'block',
+    path: 'blocks',
     loadChildren: () => import('./block/block.module').then( m => m.BlockPageModule)
   }
 ];
