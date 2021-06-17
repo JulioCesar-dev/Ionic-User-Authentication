@@ -9,7 +9,8 @@ import { Location } from '@angular/common';
 export class AppComponent {
   public appPages = [
     { title: 'Ambiente', url: '/enviroment', icon: 'layers' },
-    { title: 'Embarcado', url: '/embedded', icon: 'calculator' }
+    { title: 'Embarcado', url: '/embedded', icon: 'calculator' },
+    { title: 'Bloco', url: '/block', icon: 'business' }
   ];
 
   constructor(private location: Location) {}
