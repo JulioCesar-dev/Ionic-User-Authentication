@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },  
   {
-    path: 'enviroment',
+    path: 'enviroments',
     pathMatch: 'prefix',
     loadChildren: () => import('./enviroment/enviroment.module').then( m => m.EnviromentPageModule)
   },
@@ -32,6 +32,10 @@ const routes: Routes = [
   {
     path: 'units',
     loadChildren: () => import('./unit/unit.module').then( m => m.UnitPageModule)
+  },
+  {
+    path: 'regionals',
+    loadChildren: () => import('./regional/regional.module').then( m => m.RegionalPageModule)
   }
 ];
 

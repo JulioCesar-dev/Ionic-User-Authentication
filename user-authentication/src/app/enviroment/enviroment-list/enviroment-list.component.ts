@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Enviroment, EnviromentType } from '../model/enviroment.model';
+import { EnviromentViewDTO } from '../dto/enviroment-view.dto';
+import { EnviromentService } from '../service/enviroment.service';
 
 @Component({
   selector: 'app-enviroment-list',
@@ -9,44 +10,29 @@ import { Enviroment, EnviromentType } from '../model/enviroment.model';
 })
 export class EnviromentListComponent implements OnInit {
 
-  enviroments: Enviroment[];
+  enviroments: EnviromentViewDTO[];
   title: string;
 
   constructor(
     private router: Router,
-
+    private enviromentService: EnviromentService
   ) { 
     this.title = "Ambientes";
-
-    this.enviroments = [{
-      id: 1,
-      name: 'Ambiente A',
-      unit: 'Unidade A',
-      block: 'A',
-      type: EnviromentType.ADMINISTRATIVE,
-      capacity: 30,
-      amountOfComputers: 10,
-      cameraIp: '192.138.0.21'
-    }, {
-      id: 1,
-      name: 'Ambiente B',
-      unit: 'Unidade A',
-      block: 'A',
-      type: EnviromentType.ADMINISTRATIVE,
-      capacity: 30,
-      amountOfComputers: 10,
-      cameraIp: '192.138.0.21'
-    }];
+    this.enviroments = [];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.enviromentService.getAllEnviroments().subscribe(objects => {
+      this.enviroments = objects;
+    });
+  }
 
   edit(unit: any){
-    this.router.navigate([`enviroment/${unit.id}/edit`]);
+    this.router.navigate([`enviroments/${unit.id}/edit`]);
   }
 
   new() {
-    this.router.navigate(["enviroment/new"]);
+    this.router.navigate(["enviroments/new"]);
   }
 
   labelResolver(enviroment: any) {

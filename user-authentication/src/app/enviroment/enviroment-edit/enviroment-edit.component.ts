@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FieldSpecifition } from 'src/app/form-edit/form-edit.component';
-import { Enviroment, EnviromentType } from '../model/enviroment.model';
+import { EnviromentViewDTO } from '../dto/enviroment-view.dto';
+import { EnviromentService } from '../service/enviroment.service';
 
 @Component({
   selector: 'app-enviroment-edit',
@@ -11,46 +12,33 @@ import { Enviroment, EnviromentType } from '../model/enviroment.model';
 export class EnviromentEditComponent implements OnInit {
 
   fields: FieldSpecifition[];
-  enviroment: Enviroment;
+  enviroment: EnviromentViewDTO;
   title: string;
 
-  constructor(private router: Router) { 
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private enviromentService: EnviromentService) { 
     this.title = "Ambiente";
-    this.enviroment = new Enviroment();
+    this.enviroment = new EnviromentViewDTO();
 
     this.fields = [{
-      label: 'Bloco',
-      name: 'block',
+      label: 'Capacidade',
+      name: 'capacity',
       itemType: 'input',
-      type: 'text',
-      required: true,
-      maxSize: 1
+      type: 'number',
+      required: true
     },{
-      label: 'Unidade',
-      name: 'unit',
+      label: 'Descrição',
+      name: 'description',
       itemType: 'input',
       type: 'text',
       required: true
     },{
-      label: 'Tipo de Ambiente',
-      name: 'type',
-      itemType: 'select',
-      options: [{
-        name: 'Comportamental',
-        value: EnviromentType.BEHAVIORAL
-      },{
-        name: 'Laboratório',
-        value: EnviromentType.LABORATORY
-      },{
-        name: 'Auditório',
-        value: EnviromentType.AUDITORIUM
-      },{
-        name: 'Anfiteatro',
-        value: EnviromentType.AMPHITHEATER
-      },{
-        name: 'Administrativo',
-        value: EnviromentType.ADMINISTRATIVE
-      }],
+      label: 'IP da Câmera',
+      name: 'cameraIp',
+      itemType: 'input',
+      type: 'text',
       required: true
     },{
       label: 'Nome',
@@ -59,30 +47,30 @@ export class EnviromentEditComponent implements OnInit {
       type: 'text',
       required: true
     },{
-      label: 'Capacidade',
-      name: 'capacity',
-      itemType: 'input',
-      type: 'number',
-      required: true
-    },{
-      label: 'Quantidade de Computadores',
-      name: 'amountOfComputers',
-      itemType: 'input',
-      type: 'number',
-      required: true
-    },{
-      label: 'IP da Câmera',
-      name: 'cameraIp',
+      label: 'Bloco',
+      name: 'blockName',
       itemType: 'input',
       type: 'text',
+      required: true,
+      maxSize: 1
+    },{
+      label: 'Tipo de Ambiente',
+      name: 'type',
+      type: 'text',
+      itemType: 'input',
       required: true
     }];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const id:number = +this.route.snapshot.paramMap.get('id');
+    this.enviromentService.getEnviromentById(id).subscribe(object => {
+      this.enviroment = object;
+    })
+  }
 
   save(object: any){
-    this.router.navigate(['enviroment/list'])
+    this.router.navigate(['enviroments/list'])
     console.log(object);
   }
 }
