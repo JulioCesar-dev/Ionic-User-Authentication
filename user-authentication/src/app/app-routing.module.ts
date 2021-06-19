@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./enviroment/enviroment.module').then( m => m.EnviromentPageModule)
   },
   {
-    path: 'embedded',
+    path: 'embeddeds',
     pathMatch: 'prefix',
     loadChildren: () => import('./embedded/embedded.module').then( m => m.EmbeddedPageModule)
   },
@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path: 'blocks',
     loadChildren: () => import('./block/block.module').then( m => m.BlockPageModule)
+  },
+  {
+    path: 'units',
+    loadChildren: () => import('./unit/unit.module').then( m => m.UnitPageModule)
   }
 ];
 

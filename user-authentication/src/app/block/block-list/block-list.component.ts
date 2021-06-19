@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BlockListDTO } from '../dto/block-list-dto';
+import { BlockListDTO } from '../dto/block-view.dto';
 import { BlockService } from '../service/block.service';
 
 @Component({

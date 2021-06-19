@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FieldSpecifition } from 'src/app/form-edit/form-edit.component';
-import { Embedded } from '../model/embedded.model';
+import { EmbeddedViewDTO } from '../dto/embedded-view.dto';
+import { EmbeddedEditDTO } from '../dto/embedded-edit.dto';
+import { EmbeddedService } from '../service/embedded.service';
 
 @Component({
   selector: 'app-embedded-edit',
@@ -11,22 +13,19 @@ import { Embedded } from '../model/embedded.model';
 export class EmbeddedEditComponent implements OnInit {
 
   fields: FieldSpecifition[];
-  embedded: Embedded;
+  embedded: EmbeddedViewDTO;
   title: string;
 
-  constructor(private router: Router) { 
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private embeddedService: EmbeddedService) { 
     this.title = "Embarcado";
-    this.embedded = new Embedded();
+    this.embedded = new EmbeddedEditDTO();
 
     this.fields = [{
       label: 'Descrição',
       name: 'description',
-      itemType: 'input',
-      type: 'text',
-      required: true
-    },{
-      label: 'Status',
-      name: 'status',
       itemType: 'input',
       type: 'text',
       required: true
@@ -37,8 +36,14 @@ export class EmbeddedEditComponent implements OnInit {
       type: 'text',
       required: true
     },{
+      label: 'Status',
+      name: 'status',
+      itemType: 'input',
+      type: 'text',
+      required: true
+    },{
       label: 'IP do Embarcado',
-      name: 'ip',
+      name: 'embeddedIp',
       itemType: 'input',
       type: 'text',
       required: true
@@ -55,31 +60,44 @@ export class EmbeddedEditComponent implements OnInit {
       type: 'text',
       required: true
     },{
-      label: 'IP do Servidor MQTT',
-      name: 'mqttIp',
+      label: 'Máscara',
+      name: 'mask',
       itemType: 'input',
       type: 'text',
       required: true
-    },{
-      label: 'Porta do Servidor MQTT',
-      name: 'mqttPort',
+    },
+    {
+      label: 'Senha do Wifi',
+      name: 'wifiPassword',
       itemType: 'input',
-      type: 'number',
+      type: 'text',
       required: true
-    },{
-      label: 'Tópicos do Servidor MQTT',
-      name: 'mqttTopics',
+    },
+    {
+      label: 'SSID',
+      name: 'ssid',
+      itemType: 'input',
+      type: 'text',
+      required: true
+    },
+    {
+      label: 'Status',
+      name: 'status',
       itemType: 'input',
       type: 'text',
       required: true
     }];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const id:number = +this.route.snapshot.paramMap.get('id');
+    this.embeddedService.getEmbeddedById(id).subscribe(object => {
+      this.embedded = object;
+    });
+  }
 
   save(object: any){
     this.router.navigate(['embedded/list'])
     console.log(object);
   }
-
 }

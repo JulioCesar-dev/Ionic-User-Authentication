@@ -8,10 +8,9 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class FormEditComponent implements OnInit {
   SELECT_TYPE: string = 'select';
   INPUT_TYPE: string = 'input';
-  
-  object: any;
 
   @Input() fields: FieldSpecifition[];
+  @Input() object: any;
   @Output() saveEvent: EventEmitter<any>;
   
   constructor() {

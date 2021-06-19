@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UnitViewDTO } from '../dto/unit-view.dto';
+import { UnitService } from '../service/unit.service';
 
 @Component({
   selector: 'app-unit-list',
@@ -7,8 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnitListComponent implements OnInit {
 
-  constructor() { }
+  title: string;
+  units: UnitViewDTO[];
 
-  ngOnInit() {}
+  constructor( 
+    private router: Router,
+    private unitService: UnitService
+    ) { 
+    this.title = "Unidades";
+    this.units = [];
+  }
 
+  ngOnInit() {
+    this.unitService.getAllUnits().subscribe((units)=>{
+      this.units = units;
+    })
+  }
+
+  edit(unit: any){
+    this.router.navigate([`units/${unit.id}/edit`]);
+  }
+
+  new() {
+    this.router.navigate(["units/new"]);
+  }
+
+  labelResolver(unit: any) {
+    return unit.name;
+  }
 }
