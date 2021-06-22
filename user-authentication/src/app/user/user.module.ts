@@ -6,14 +6,20 @@ import { IonicModule } from '@ionic/angular';
 
 import { UserPageRoutingModule } from './user-routing.module';
 
-import { UserPage } from './user.page';
+import { UserService } from './service/user.service';
+import { UserPage } from './page/user.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
+  providers: [
+    UserService
+  ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UserPageRoutingModule
+    UserPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [UserPage]
 })

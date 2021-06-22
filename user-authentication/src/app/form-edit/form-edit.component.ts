@@ -11,18 +11,25 @@ export class FormEditComponent implements OnInit {
 
   @Input() fields: FieldSpecifition[];
   @Input() object: any;
+  @Input() showRemoveButton: boolean = false;
   @Output() saveEvent: EventEmitter<any>;
+  @Output() removeEvent: EventEmitter<any>;
   
   constructor() {
     this.fields = [];
     this.object = {};
     this.saveEvent = new EventEmitter<any>();
+    this.removeEvent = new EventEmitter<any>();
   }
 
   ngOnInit() {}
 
   save() {
     this.saveEvent.emit(this.object);
+  }
+
+  remove() {
+    this.removeEvent.emit(this.object);
   }
 }
 

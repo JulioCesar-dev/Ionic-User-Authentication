@@ -38,5 +38,4 @@ export class EnviromentListComponent implements OnInit {
   labelResolver(enviroment: any) {
     return enviroment.name;
   }
-
 }

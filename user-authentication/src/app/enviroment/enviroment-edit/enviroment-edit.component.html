@@ -8,5 +8,11 @@
 </ion-header>
 
 <ion-content>
-  <app-form-edit [object]="enviroment" (saveEvent)="save($event)" [fields]="fields"></app-form-edit>
+  <app-form-edit 
+    [showRemoveButton]="enviroment.id" 
+    [object]="enviroment" 
+    (saveEvent)="save($event)" 
+    (removeEvent)="remove($event)"
+    [fields]="fields">
+  </app-form-edit>
 </ion-content>

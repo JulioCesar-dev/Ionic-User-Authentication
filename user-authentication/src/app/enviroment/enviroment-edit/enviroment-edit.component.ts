@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { FieldSpecifition } from 'src/app/form-edit/form-edit.component';
 import { EnviromentViewDTO } from '../dto/enviroment-view.dto';
 import { EnviromentService } from '../service/enviroment.service';
@@ -18,6 +19,7 @@ export class EnviromentEditComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private toastController: ToastController,
     private enviromentService: EnviromentService) { 
     this.title = "Ambiente";
     this.enviroment = new EnviromentViewDTO();
@@ -63,14 +65,50 @@ export class EnviromentEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id:number = +this.route.snapshot.paramMap.get('id');
-    this.enviromentService.getEnviromentById(id).subscribe(object => {
-      this.enviroment = object;
-    })
+    const id:any = this.route.snapshot.paramMap.get('id');
+    
+    if (id != null) {
+      this.enviromentService.getEnviromentById(id).subscribe(object => {
+        this.enviroment = object;
+      })
+    }
   }
 
   save(object: any){
-    this.router.navigate(['enviroments/list'])
-    console.log(object);
+    this.enviromentService.save(object).subscribe(async () => {
+      const toast = await this.toastController.create({
+        message: object.id ? 'Ambiente atualizado com sucesso!':'Ambiente criado com sucesso!',
+        duration: 2000
+      });
+      toast.present()
+
+      this.router.navigate(['enviroments/list'])
+    }, async error => {
+      const toast = await this.toastController.create({
+        message: 'Erro ao processar a requisição!',
+        duration: 2000
+      });
+
+      toast.present();
+    })    
+  }
+
+  remove(object: any){
+    this.enviromentService.delete(object.id).subscribe(async () => {
+      const toast = await this.toastController.create({
+        message: 'Ambiente removido com sucesso!',
+        duration: 2000
+      });
+      toast.present()
+
+      this.router.navigate(['enviroments/list'])
+    }, async error => {
+      const toast = await this.toastController.create({
+        message: 'Erro ao processar a requisição!',
+        duration: 2000
+      });
+
+      toast.present();
+    })    
   }
 }

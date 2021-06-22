@@ -1,6 +1,6 @@
 import { EnviromentType } from "./enviroment-type.dto";
 
-export class EnviromentViewDTO {
+export class EnviromentEditDTO {
     id: number;
     capacity: number;
     description: string;

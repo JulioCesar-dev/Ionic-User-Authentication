@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +10,26 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private toastController: ToastController,
+    private loginService: LoginService) {
+  }
 
   ngOnInit() {}
 
-  login() {
-    this.router.navigate([''])
+  async login(email, password) {
+    this.loginService.authenticate(email, password).subscribe(user => {
+      localStorage.setItem('user', JSON.stringify(user));
+      this.router.navigate([''])
+    }, async error => {
+      const toast = await this.toastController.create({
+        message: 'Email ou senha incorreta!',
+        duration: 2000
+      });
+
+      toast.present();
+    });
   }
 
   newUser() {
@@ -23,5 +39,4 @@ export class LoginComponent implements OnInit {
   passwordRecovery() {
     this.router.navigate(['passwordRecovery'])
   }
-
 }

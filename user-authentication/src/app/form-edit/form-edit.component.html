@@ -20,4 +20,5 @@
     </ion-select>
   </ion-item>
   <ion-button (click)="save()" shape="round" [disabled]="!formEdit.form.valid" expand="block">Salvar</ion-button>
+  <ion-button *ngIf="showRemoveButton" (click)="remove()" shape="round" expand="block">Excluir</ion-button>
 </form>
