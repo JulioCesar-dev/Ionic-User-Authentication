@@ -4,7 +4,7 @@ export class EnviromentViewDTO {
     id: number;
     capacity: number;
     description: string;
-    cameraIp: string;
+    cameraIP: string;
     name: string;
     type: EnviromentType;
     blockId: number;

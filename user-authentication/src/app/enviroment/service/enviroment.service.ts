@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EmbeddedViewDTO } from 'src/app/embedded/dto/embedded-view.dto';
 import { environment } from 'src/environments/environment';
-import { EnviromentEditDTO } from '../dto/enviroment-edit.dto';
 import { EnviromentViewDTO } from '../dto/enviroment-view.dto';
 
 @Injectable({
@@ -23,7 +21,7 @@ export class EnviromentService {
     return this.httpClient.get<EnviromentViewDTO>(`${this.API_ORIGIN}/enviroments/${id}`);
   }
 
-  save(enviroment: EnviromentEditDTO): Observable<void> {
+  save(enviroment: EnviromentViewDTO): Observable<void> {
     if (enviroment.id) {
       return this.httpClient.put<void>(`${this.API_ORIGIN}/enviroments/${enviroment.id}`, enviroment);
     } else {

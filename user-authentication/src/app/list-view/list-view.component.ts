@@ -11,20 +11,14 @@ export class ListViewComponent implements OnInit {
   @Input() items: any[];
 
   @Output() selectItemEvent: EventEmitter<any>;
-  @Output() newItemEvent: EventEmitter<any>;
 
   constructor() {
     this.items = [];
 
     this.selectItemEvent = new EventEmitter<any>();
-    this.newItemEvent = new EventEmitter<void>();
   }
 
   ngOnInit() {}
-
-  newItem() {
-    this.newItemEvent.emit();
-  }
 
   editItem(item) {
     this.selectItemEvent.emit(item)

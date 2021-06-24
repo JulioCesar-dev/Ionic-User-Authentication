@@ -7,8 +7,13 @@
 <ion-content>
   <app-list-view 
     (selectItemEvent)="edit($event)" 
-    (newItemEvent)="new()" 
     [items]="enviroments"
     [getLabelItem]="labelResolver">
   </app-list-view>
 </ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="new()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

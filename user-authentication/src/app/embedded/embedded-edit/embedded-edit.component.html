@@ -8,5 +8,11 @@
 </ion-header>
 
 <ion-content>
-  <app-form-edit [object]="embedded" (saveEvent)="save($event)" [fields]="fields"></app-form-edit>
+  <app-form-edit 
+    [showRemoveButton]="embedded.id" 
+    (removeEvent)="remove($event)"
+    [object]="embedded" 
+    (saveEvent)="save($event)" 
+    [fields]="fields">
+  </app-form-edit>
 </ion-content>

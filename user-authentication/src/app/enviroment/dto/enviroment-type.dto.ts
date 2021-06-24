@@ -1,9 +1,9 @@
 export enum EnviromentType {
-    CERTIFICACAO,
-	SERVIDOR,
-	ANFITEATRO,
-	COMPORTAMENTAL,
-	LABORATORIO,
-	AUDITORIO,
-	ADMINISTRATIVO
+    CERTIFICACAO = "Certificação",
+	SERVIDOR = "Servidor",
+	ANFITEATRO = "Anfiteatro",
+	COMPORTAMENTAL = "Comportamental",
+	LABORATORIO = "Laboratório",
+	AUDITORIO = "Auditório",
+	ADMINISTRATIVO = "Administrativo"
 }

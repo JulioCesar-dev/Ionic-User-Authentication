@@ -20,4 +20,16 @@ export class EmbeddedService {
   getEmbeddedById(id: number): Observable<EmbeddedViewDTO> {
     return this.httpClient.get<EmbeddedViewDTO>(`${this.API_ORIGIN}/embeddeds/${id}`);
   }
+
+  save(embedded: EmbeddedViewDTO): Observable<void> {
+    if (embedded.id) {
+      return this.httpClient.put<void>(`${this.API_ORIGIN}/embeddeds/${embedded.id}`, embedded);
+    } else {
+      return this.httpClient.post<void>(`${this.API_ORIGIN}/embeddeds`, embedded);
+    }
+  }
+
+  delete(embeddedId: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.API_ORIGIN}/embeddeds/${embeddedId}`);
+  }
 }

@@ -1,4 +1,4 @@
-export interface EmbeddedViewDTO {
+export class EmbeddedViewDTO {
     id: number;
     description: string;
     firmware: string;
@@ -9,10 +9,4 @@ export interface EmbeddedViewDTO {
     ssid: string;
     status: string;
     enviromentId: number;
-    enviromentName: string;
-}
-
-export enum ComunicationType {
-    CLIENT_STATION,
-    ROUTER
 }
